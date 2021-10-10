@@ -9,7 +9,7 @@
 					<div class="row">
 						<div class="col-md-4"><b>{{ __('Customers Plan') }}</b></div>
 
-						<div class="col-md-3"><a href="{{ route('list_channel') }}">{{  __('Channel List') }}</a></div>
+						<div class="col-md-3"><a href="{{ route('list_customer') }}">{{  __('Customer List') }}</a></div>
 						<div class="col-md-3"><a href="{{ route('add_plan') }}">{{ __('Add Plan')}}</a></div>
                         <div class="col-md-2"><a href="{{ route('config') }}">{{ __('Config')}}</a></div>
 

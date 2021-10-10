@@ -1,6 +1,13 @@
 <?php
 
 #IPTV Routes
+Route::group([
+    'prefix' => 'client/m3u8',
+    'middleware' => ['api','client'],
+	],
+    function(){
+         Route::get('/{slug}',"FelipeMateus\IPTVCustomers\Controllers\CustomerChannelsM3UController@show")->name("cdn-playslit");
+    });
 
 Route::group([
     'middleware' => ['web', 'iptv_locale'],
@@ -13,9 +20,13 @@ Route::group([
             Route::post('/add', 'FelipeMateus\IPTVCustomers\Controllers\PlanController@create')->name('create_plan');
 
             Route::get('/{id}', 'FelipeMateus\IPTVCustomers\Controllers\PlanController@show')->name('show_plan');
-
             Route::post('/{id}', 'FelipeMateus\IPTVCustomers\Controllers\PlanController@update')->name('update_plan');
+
             Route::get('/del/{id}', 'FelipeMateus\IPTVCustomers\Controllers\PlanController@delete')->name('delete_plan');
+
+            Route::post('/{plan_id}/group/add', 'FelipeMateus\IPTVCustomers\Controllers\PlanGroupController@add')->name('add_group_to_plan');
+            Route::post('/{plan_id}/group/delete', 'FelipeMateus\IPTVCustomers\Controllers\PlanGroupController@delete')->name('delete_group_to_plan');
+
         });
 
 
@@ -24,7 +35,7 @@ Route::group([
             Route::get('add', 'FelipeMateus\IPTVCustomers\Controllers\CustomerController@new')->name('add_customer');
             Route::post('add', 'FelipeMateus\IPTVCustomers\Controllers\CustomerController@create')->name('create_customer');
             Route::get('/{id}', 'FelipeMateus\IPTVCustomers\Controllers\CustomerController@show')->name('show_customer');
-            Route::post('/{id}', 'FelipeMateus\IPTVCustomers\Controllers\ChannelController@update')->name('update_customer');
+            Route::post('/{id}', 'FelipeMateus\IPTVCustomers\Controllers\CustomerController@update')->name('update_customer');
             Route::get('/del/{id}', 'FelipeMateus\IPTVCustomers\Controllers\CustomerController@delete')->name('delete_customer');
         });
     }

@@ -14,7 +14,7 @@ class IPTVCustomer extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'hash_acess'
+        'name', 'username', 'hash_acess', 'iptv_plan_id'
     ];
 
     protected $table = "iptv_customers";
@@ -24,8 +24,16 @@ class IPTVCustomer extends Model
      */
     public function plan()
     {
-        return $this->belongsTo(IPTVPlan::class);
+        return $this->belongsTo(IPTVPlan::class, 'iptv_plan_id');
     }
 
+    /**
+     * get list fucntion
+     *
+     * @return list
+     */
+	public function scopeGetList($query){
+    	return $query->orderBy("name")->get();
+    }
 
 }

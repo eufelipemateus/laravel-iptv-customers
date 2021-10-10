@@ -4,11 +4,9 @@ namespace  FelipeMateus\IPTVCustomers\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use FelipeMateus\IPTVChannels\Model\IPTVChannelGroup;
-use FelipeMateus\IPTVCustomers\Model\IPTVCustomer;
-use FelipeMateus\IPTVChannels\Model\IPTVUrl;
-use FelipeMateus\IPTVChannels\Model\IPTVCdn;
-use FelipeMateus\IPTVChannels\Model\IPTVConfig;
+use FelipeMateus\IPTVCustomers\Models\IPTVPlan;
+use FelipeMateus\IPTVCustomers\Models\IPTVCustomer;
+
 
 class CustomerController extends Controller
 {
@@ -23,28 +21,25 @@ class CustomerController extends Controller
     }
 
     /**
-     * Show new channewl page.
+     * Show new customer page.
      *
-     * @return view -> IPTV:chanel
+     * @return view -> IPTV:customer
      */
 	public function new(){
-		$data["Planslist"] = IPTVChannelGroup::get();
+		$data["Planslist"] = IPTVPlan::where("active",1)->get();
 		return view("IPTV::customer",$data);
 	}
 
     /**
-     * Show page from channel with id.
+     * Show page from customer with id.
      *
      * @param $id - channewl id
      * @return view -> IPTV:chanel
      */
 	public function show($id){
-		$data["Channel"] = IPTVChannel::findOrFail($id);
-        $data["Groupslist"] = IPTVChannelGroup::get();
-        $data['Cdnslist'] = IPTVCdn::all();
-        $data["urls"] = IPTVUrl::where("iptv_channel_id", $id )->get();
-        $data['radio_stream'] = IPTVConfig::get("RADIO_STREAM");
-		return view("IPTV::channel",$data);
+		$data["Customer"]  = IPTVCustomer::findOrFail($id);
+        $data["Planslist"] = IPTVPlan::where("active",1)->get();
+		return view("IPTV::customer",$data);
 	}
 
     /**
@@ -54,16 +49,15 @@ class CustomerController extends Controller
      */
     public function create(Request $request){
 		$this->validate($request, [
-			'number' => 'numeric|required|unique:iptv_channels',
-			'image' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-			'group_id' => 'required|exists:iptv_channel_groups,id',
+			'name' => 'string|required',
+			'username' => 'required|string',
+			'iptv_plan_id' => 'required|exists:iptv_plans,id',
 		]);
 		$data = $request->all();
-		$c = IPTVChannel::create($data);
+        $data['hash_acess'] = md5(now());
+		$c = IPTVCustomer::create($data);
 		// Save Image
-		$c->logo = $request->file('image') ;
-		$c->save();
-		return redirect()->route('list_channel');
+		return redirect()->route('list_customer');
 	}
 
     /**
@@ -73,49 +67,39 @@ class CustomerController extends Controller
      * @return redirect -> list_channels
      */
 	public function update($id,Request $request){
-		$channel =IPTVChannel::findOrFail($id);
+		$channel =IPTVCustomer::findOrFail($id);
 
 		$this->validate($request, [
-			'number' => ['required','numeric',Rule::unique('iptv_channels')->ignore($channel->id, 'id')],
-			'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-			'group_id' => 'required|exists:iptv_channel_groups,id',
+			'name' => 'string|required',
+			'username' => 'required|string',
+			'iptv_plan_id' => 'required|exists:iptv_plans,id',
 		]);
 
 		$data = $request->all();
 		$channel->update($data);
-		$image = $request->file('image');
 
-		if(isset($image)){
-			$channel->logo=$image;
-		}
-		if(!isset($data['radio'])){
-			$channel->radio=false;
-		}else{
-			$channel->radio=true;
-		}
-		$channel->save();
-		return redirect()->route('list_channel');
+		return redirect()->route('list_customer');
 	}
 
     /**
      * Delete channel form database.
      *
      * @param id from channel
-     * @return redirect -> list_channel
+     * @return redirect -> list_customer
      */
     public function delete($id,Request $request){
-		$group =IPTVChannel::findOrFail($id);
+		$group =IPTVCustomer::findOrFail($id);
 		$group->delete();
-		return redirect()->route('list_channel');
+		return redirect()->route('list_customer');
 	}
 
     /**
-     * Return a channel List from database.
+     * Return a customer List from database.
      *
-     * @return view -> IPTV::channel_list
+     * @return view -> IPTV::customer_list
      */
     public function list(){
-		$data['list'] = IPTVChannel::getList();
-		return view("IPTV::channel_list",$data);
+		$data['list'] = IPTVCustomer::getList();
+		return view("IPTV::customer_list",$data);
 	}
 }

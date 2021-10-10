@@ -5,6 +5,13 @@
 .row{
     margin: 1% 0;
 }
+.list{
+    width: 49%;
+    display: inline-block;
+}
+.form-list-group{
+    display: inline-block;
+}
 </style>
 @endsection
 
@@ -16,7 +23,7 @@
                 <div class="card-header">
                     <div class="row">
 						<div class="col-md-6"><b>{{ __('Plan') }}</b></div>
-						<div class="col-md-3"><a href="{{ route('list_channel') }}">{{  __('Costumers List') }}</a></div>
+						<div class="col-md-3"><a href="{{ route('list_customer') }}">{{  __('Customer List') }}</a></div>
 						<div class="col-md-3"><a href="{{ route('list_plan') }}">{{ __('Plan List') }}</a></div>
 					</div>
                 </div>
@@ -34,7 +41,7 @@
 						</div>
 
                         <div class="form-group">
-							<label for="name" class="col-md-4 control-label">{{ __('Prince') }}</label>
+							<label for="name" class="col-md-4 control-label">{{ __('Price') }}</label>
 							<div class="col-md-6">
 								<input id="name" type="number"   class="form-control" name="price" value="@if(isset($Plan->price)){{ $Plan->price }}@endif" placeholder="" required autofocus>
 							</div>
@@ -44,7 +51,7 @@
                         <div class="form-group">
                             <div class="form-check form-switch">
                                 <input class="form-check-input" type="checkbox"  id="active"  value='1'  name="active" @if(@$Plan->active) checked @endif>
-                                <label class="form-check-label" for="active">{{ __('Plan Ative') }}<label>
+                                <label class="form-check-label" for="active">{{ __('Plan Active?') }}<label>
                             </div>
                         </div>
 
@@ -67,5 +74,62 @@
 			</div>
 		</div>
 	</div>
+
+    @if(isset($Plan))
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+						<div class="col-md-7"><b>{{ __('Channels Groups')}}</b></div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="list">
+                        <ul class="list-group">
+                        @foreach($GroupList as $group)
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <b>{{  $group->name}}</b>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <form id="form-group-{{$group->id}}" class="form-list-group"  action="{{ route('add_group_to_plan', ['plan_id' => $Plan->id]) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" id="iptv-group-id" name="iptv_group_id" value="{{$group->id}}">
+                                            <button  id="id-group-{{$group->id}}"type="submit" class="btn btn-link">add group</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                        </ul>
+                    </div>
+                    <div class="list">
+                    <ul class="list-group">
+                        @foreach($PlanGroupList as $group)
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <b>{{  $group->name}}</b>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <form id="form-group-{{$group->id}}" class="form-list-group"  action="{{ route('delete_group_to_plan', ['plan_id' => $Plan->id]) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" id="iptv-group-id" name="iptv_group_id" value="{{$group->id}}">
+                                            <button  id="id-group-{{$group->id}}"type="submit" class="btn btn-link">delete group</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
 </div>
 @endsection

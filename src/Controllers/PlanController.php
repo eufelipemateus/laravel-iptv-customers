@@ -4,6 +4,7 @@ namespace  FelipeMateus\IPTVCustomers\Controllers;
 
 use Illuminate\Http\Request;
 use FelipeMateus\IPTVCustomers\Models\IPTVPlan;
+use  FelipeMateus\IPTVChannels\Model\IPTVChannelGroup;
 
 class PlanController extends Controller
 {
@@ -45,6 +46,8 @@ class PlanController extends Controller
      */
     public function show($id){
 		$data["Plan"] = IPTVPlan::findOrFail($id);
+        $data['GroupList'] = $data["Plan"]->groupsList();
+        $data['PlanGroupList'] =$data["Plan"]->groups;
 		return view("IPTV::plan",$data);
 	}
 
@@ -55,8 +58,23 @@ class PlanController extends Controller
      * @return redirect -> list_plan
      */
     public function update($id,Request $request){
-		$group =IPTVPlan::findOrFail($id);
-		$group->update($request->all());
+		$plan =IPTVPlan::findOrFail($id);
+        $data = $request->all();
+		$plan->update($data);
+
+        if(!isset($data['active'])){
+			$plan->active=false;
+		}else{
+			$plan->active=true;
+		}
+
+        if(!isset($data['additional'])){
+			$plan->additional=false;
+		}else{
+			$plan->additional=true;
+		}
+
+        $plan->save();
 		return redirect()->route('list_plan');
 	}
 
