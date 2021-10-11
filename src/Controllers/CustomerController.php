@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use FelipeMateus\IPTVCustomers\Models\IPTVPlan;
 use FelipeMateus\IPTVCustomers\Models\IPTVCustomer;
+use FelipeMateus\IPTVCore\Controllers\CoreController;
 
 
-class CustomerController extends Controller
+class CustomerController extends CoreController
 {
     /**
      * Create a new controller instance.

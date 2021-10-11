@@ -5,8 +5,9 @@ namespace  FelipeMateus\IPTVCustomers\Controllers;
 use Illuminate\Http\Request;
 use FelipeMateus\IPTVCustomers\Models\IPTVPlan;
 use FelipeMateus\IPTVCustomers\Models\IPTVPlanGroup;
+use FelipeMateus\IPTVCore\Controllers\CoreController;
 
-class PlanGroupController extends Controller
+class PlanGroupController extends CoreController
 {
     //
 

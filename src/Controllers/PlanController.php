@@ -5,8 +5,9 @@ namespace  FelipeMateus\IPTVCustomers\Controllers;
 use Illuminate\Http\Request;
 use FelipeMateus\IPTVCustomers\Models\IPTVPlan;
 use  FelipeMateus\IPTVChannels\Model\IPTVChannelGroup;
+use FelipeMateus\IPTVCore\Controllers\CoreController;
 
-class PlanController extends Controller
+class PlanController extends CoreController
 {
     /**
      * Create a new controller instance.
