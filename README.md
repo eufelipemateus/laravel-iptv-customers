@@ -1,5 +1,6 @@
 # Laravel IPTV Customers - FelipeMateus\IPTVCustomers
 
+[![Latest Stable Version](http://poser.pugx.org/felipemateus/iptv-customers/v)](https://packagist.org/packages/felipemateus/iptv-customers) [![Total Downloads](http://poser.pugx.org/felipemateus/iptv-customers/downloads)](https://packagist.org/packages/felipemateus/iptv-customers) [![Latest Unstable Version](http://poser.pugx.org/felipemateus/iptv-customers/v/unstable)](https://packagist.org/packages/felipemateus/iptv-customers) [![License](http://poser.pugx.org/felipemateus/iptv-customers/license)](https://packagist.org/packages/felipemateus/iptv-customers) [![PHP Version Require](http://poser.pugx.org/felipemateus/iptv-customers/require/php)](https://packagist.org/packages/felipemateus/iptv-customers)
   
   
 This package controls all customers and plans integrated with [iptv-channels](https://github.com/eufelipemateus/laravel-iptv-channels)  generates a list of channels for each customer.
