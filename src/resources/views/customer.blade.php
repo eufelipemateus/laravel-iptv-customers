@@ -1,16 +1,17 @@
 @extends('IPTV::app')
 
 @section('content')
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">{{ __('Customers') }}</h1>
+</div>
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-						<div class="col-md-3"><b>{{ __('Customers') }} </b></div>
-						<div class="col-md-3"><a href="{{ route('list_customer') }}">{{  __('Customers List') }}</a></div>
-						<div class="col-md-3"><a href="{{ route('list_plan') }}">{{ __('Plan List') }}</a></div>
-                        <div class="col-md-3"><a href="{{ route('add_plan') }}">{{ __('Add Plan') }}</a></div>
+						<div class="col-md-3"><b>{{ __('Customer') }} </b></div>
 					</div>
                 </div>
 

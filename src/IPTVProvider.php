@@ -5,9 +5,10 @@ namespace FelipeMateus\IPTVCustomers;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use FelipeMateus\IPTVCustomers\Middleware\CustomerMiddleware;
+use FelipeMateus\IPTVCore\Class\IPTVProviderBase;
 
 
-class IPTVProvider extends ServiceProvider
+class IPTVProvider extends IPTVProviderBase
 {
 
 
@@ -20,9 +21,10 @@ class IPTVProvider extends ServiceProvider
     {
         $this->registerMidleware();
         $this->loadMigrationsFrom(__DIR__.'/database/migrations/');
-		$this->loadViewsFrom(__DIR__.'/views', 'IPTV');
+		$this->loadViewsFrom(__DIR__.'/resources/views', 'IPTV');
 		$this->loadRoutesFrom(__DIR__.'/routes.php');
-        $this->loadJSONTranslationsFrom(__DIR__.'/translations');
+        $this->loadJSONTranslationsFrom(__DIR__.'/resources/translations');
+        $this->loadMenusFrom(__DIR__.'/resources/menu');
     }
 
 
