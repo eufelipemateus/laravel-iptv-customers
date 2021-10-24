@@ -32,6 +32,9 @@ php artisan migrate
 
 - To add new locale compatibility you need contribute to [iptv-core](https://github.com/eufelipemateus/laravel-iptv-core/blob/main/src/Class/Locale.php) first.
 
+- [Telegram group to discussion about sugestion,Feature and etc.](https://t.me/laravel_iptv)
+
+
 ## License
 
 [![License](http://poser.pugx.org/felipemateus/iptv-customers/license)](https://packagist.org/packages/felipemateus/iptv-customers)
