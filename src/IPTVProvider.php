@@ -6,7 +6,8 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use FelipeMateus\IPTVCustomers\Middleware\CustomerMiddleware;
 use FelipeMateus\IPTVCore\Class\IPTVProviderBase;
-
+use FelipeMateus\IPTVCustomers\Dashs\Customers;
+use FelipeMateus\IPTVCustomers\Dashs\Plans;
 
 class IPTVProvider extends IPTVProviderBase
 {
@@ -25,6 +26,7 @@ class IPTVProvider extends IPTVProviderBase
 		$this->loadRoutesFrom(__DIR__.'/routes.php');
         $this->loadJSONTranslationsFrom(__DIR__.'/resources/translations');
         $this->loadMenusFrom(__DIR__.'/resources/menu');
+        $this->registerDashboard();
     }
 
 
@@ -48,5 +50,16 @@ class IPTVProvider extends IPTVProviderBase
         $router = $this->app->make(Router::class);
         $router->aliasMiddleware('client', CustomerMiddleware::class);
     }
+
+    /**
+     * Regoster Dashboard card
+     *
+     * @return void
+     */
+    private function registerDashboard(){
+        $this->loadDashFrom(Customers::class);
+        $this->loadDashFrom(Plans::class);
+    }
+
 
 }
