@@ -1,12 +1,22 @@
 @extends('IPTV::app')
 
+
+@section('style')
+<style>
+.row-line{
+    margin: 5% 0;
+}
+
+</style>
+@endsection
+
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
     <h1 class="h3 mb-0 text-gray-800">{{ __('Customers') }}</h1>
 </div>
 <div class="container">
-    <div class="row">
+    <div class="row row-line">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
@@ -16,7 +26,7 @@
                 </div>
 
                 <div class="card-body">
-					<form class="form-horizontal" role="form" method="POST" action="{{ url()->current()  }}" enctype="multipart/form-data">
+					<form class="form-horizontal" role="form" method="POST" action="" enctype="multipart/form-data">
 
 						{{ csrf_field() }}
 
@@ -67,6 +77,17 @@
 							</div>
 						</div>
 
+                        <div class="form-group">
+							<label for="cdn_id" class="col-md-4 control-label">{{ __('CDN') }}</label>
+							<div class="col-md-6">
+								<select id="cdn_id" class="form-control" name="iptv_cdn_id"   >
+									@foreach($Cdnslist as $cdn)
+										<option @if(isset($Customer->iptv_cdn_id)) @if($Customer->iptv_cdn_id==$cdn->id)  selected @endif @endif value="{{ $cdn->id}}">{{$cdn->name }}</option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+
 						<div class="row">
 							<div class="col-md-6 col-md-offset-5">
 								<button class="btn btn-primary">{{ __('Save')}}</button>
@@ -77,6 +98,29 @@
 				</div>
 			</div>
 		</div>
+    </div>
+
+    <div class="row row-line">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+						<div class="col-md-3"><b>{{ __('Personal URL') }} </b></div>
+					</div>
+                </div>
+
+                <div class="card-body">
+
+                    <div class="form-group">
+                        <label for="name" class="col-md-4 control-label">{{ __('Url') }}</label>
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" readonly value="{{ $Customer->personal_url  }}" id="myInput">
+                        </div>
+					</div>
+
+                </div>
+            </div>
+        </div>
 	</div>
  </div>
 @endsection

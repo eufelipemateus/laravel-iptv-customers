@@ -6,7 +6,7 @@ Route::group([
     'middleware' => ['api','client'],
 	],
     function(){
-         Route::get('/{slug}',"FelipeMateus\IPTVCustomers\Controllers\CustomerChannelsM3UController@show")->name("client-playslit");
+         Route::get('/{slug}',"FelipeMateus\IPTVCustomers\Controllers\CustomerChannelsM3UController@show")->name("client-playlist");
     });
 
 Route::group([

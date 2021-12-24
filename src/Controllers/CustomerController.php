@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 use FelipeMateus\IPTVCustomers\Models\IPTVPlan;
 use FelipeMateus\IPTVCustomers\Models\IPTVCustomer;
 use FelipeMateus\IPTVCore\Controllers\CoreController;
-
+use FelipeMateus\IPTVChannels\Model\IPTVCdn;
 
 class CustomerController extends CoreController
 {
@@ -28,6 +28,7 @@ class CustomerController extends CoreController
      */
 	public function new(){
 		$data["Planslist"] = IPTVPlan::where("active",1)->get();
+        $data['Cdnslist'] = IPTVCdn::all();
 		return view("IPTV::customer",$data);
 	}
 
@@ -40,6 +41,7 @@ class CustomerController extends CoreController
 	public function show($id){
 		$data["Customer"]  = IPTVCustomer::findOrFail($id);
         $data["Planslist"] = IPTVPlan::where("active",1)->get();
+        $data['Cdnslist'] = IPTVCdn::all();
 		return view("IPTV::customer",$data);
 	}
 

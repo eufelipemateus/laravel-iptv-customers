@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="card-body">
-					<form class="form-horizontal" role="form" method="POST" action="{{ url()->current() }}" enctype="multipart/form-data">
+					<form class="form-horizontal" role="form" method="POST" action="" enctype="multipart/form-data">
 
 						{{ csrf_field() }}
 
