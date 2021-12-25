@@ -37,7 +37,7 @@
         "php": "^7.4|^8.0",
         "laravel/framework": "^8.54",
         "felipemateus/iptv-core":"^1.0",
-        "felipemateus/iptv-channels": "^3.0",
+        "felipemateus/iptv-channels": "^3.0.2",
         "felipemateus/http-build-url": "^0.0"
 	},
 	"autoload": {
