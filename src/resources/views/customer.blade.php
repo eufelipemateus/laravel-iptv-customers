@@ -114,7 +114,7 @@
                     <div class="form-group">
                         <label for="name" class="col-md-4 control-label">{{ __('Url') }}</label>
                         <div class="col-md-6">
-                            <input type="text" class="form-control" readonly value="{{ $Customer->personal_url  }}" id="myInput">
+                            <input type="text" class="form-control" readonly value="   @if(isset($Customer->personal_url)){{ $Customer->personal_url }} @endif" id="myInput">
                         </div>
 					</div>
 
