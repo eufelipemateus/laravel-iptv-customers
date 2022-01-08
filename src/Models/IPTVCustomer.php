@@ -44,6 +44,14 @@ class IPTVCustomer extends Model
     }
 
     /**
+     * The plans additional that belong to the customers.
+     */
+    public function plans_additional()
+    {
+        return $this->belongsToMany(IPTVPlan::class,'iptv_customer_plan_additionals','iptv_customer_id', 'iptv_plans_id');
+    }
+
+    /**
      * get list fucntion
      *
      * @return list
@@ -59,5 +67,17 @@ class IPTVCustomer extends Model
     {
         return $this->belongsTo(IPTVCdn::class, 'iptv_cdn_id');
     }
+
+
+    /**
+     * Plan Additional List
+     */
+    public function planAditionalList()
+    {
+        $exclude  = $this->plans_additional()->pluck('iptv_plans_id');
+
+        return IPTVPlan::where('active', 1)->where('additional', 1)->whereNotIn('id', $exclude)->get();
+    }
+
 
 }

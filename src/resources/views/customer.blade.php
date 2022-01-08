@@ -6,7 +6,13 @@
 .row-line{
     margin: 5% 0;
 }
-
+.list{
+    width: 49%;
+    display: inline-block;
+}
+.form-list-group{
+    display: inline-block;
+}
 </style>
 @endsection
 
@@ -100,6 +106,7 @@
 		</div>
     </div>
 
+    @if(isset($Customer))
     <div class="row row-line">
         <div class="col-md-12">
             <div class="card">
@@ -122,5 +129,63 @@
             </div>
         </div>
 	</div>
+
+    <div class="row row-line">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+						<div class="col-md-7"><b>{{ __('Plans Additional')}}</b></div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="list">
+                        <ul class="list-group">
+                        @foreach($PlansAdditionallist as $plan)
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <b>{{  $plan->name}}</b>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <form id="form-plan-{{$plan->id}}" class="form-list-group"  action="{{ route('add_additional', ['customer_id' => $Customer->id]) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" id="iptv-plan-id" name="iptv_plan_id" value="{{$plan->id}}">
+                                            <button  id="id-plan-{{$plan->id}}"type="submit" class="btn btn-link">add plan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                        </ul>
+                    </div>
+                    <div class="list">
+                    <ul class="list-group">
+                        @foreach($CustomerPlansAddionalList as $plan)
+
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <b>{{  $plan->name}}</b>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <form id="form-plan-{{$plan->id}}" class="form-list-group"  action="{{ route('del_additional', ['customer_id' => $Customer->id]) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input type="hidden" id="iptv-plan-id" name="iptv_plan_id" value="{{$plan->id}}">
+                                            <button  id="id-plan-{{$plan->id}}"type="submit" class="btn btn-link">delete plan</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </li>
+                        @endforeach
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @endif
+
  </div>
 @endsection

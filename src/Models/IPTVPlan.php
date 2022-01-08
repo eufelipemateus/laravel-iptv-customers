@@ -34,4 +34,7 @@ class IPTVPlan extends Model
         return IPTVPlanGroup::whereNotIn('id', $exclude)->get();
     }
 
+    static public function activePlanList(){
+        return self::where("active",1)->where("additional",0)->get();
+    }
 }

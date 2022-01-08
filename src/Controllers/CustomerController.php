@@ -27,7 +27,7 @@ class CustomerController extends CoreController
      * @return view -> IPTV:customer
      */
 	public function new(){
-		$data["Planslist"] = IPTVPlan::where("active",1)->get();
+		$data["Planslist"] = IPTVPlan::activePlanList();
         $data['Cdnslist'] = IPTVCdn::all();
 		return view("IPTV::customer",$data);
 	}
@@ -40,8 +40,10 @@ class CustomerController extends CoreController
      */
 	public function show($id){
 		$data["Customer"]  = IPTVCustomer::findOrFail($id);
-        $data["Planslist"] = IPTVPlan::where("active",1)->get();
+        $data["Planslist"] = IPTVPlan::activePlanList();
+        $data["PlansAdditionallist"] = $data["Customer"]->planAditionalList();
         $data['Cdnslist'] = IPTVCdn::all();
+        $data['CustomerPlansAddionalList'] =   $data["Customer"]->plans_additional()->get();
 		return view("IPTV::customer",$data);
 	}
 
