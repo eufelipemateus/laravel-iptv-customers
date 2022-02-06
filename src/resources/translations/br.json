@@ -18,5 +18,12 @@
     "add group": "adicionar grupo",
     "delete group": "excluir grupo",
     "Personal URL": "URL Pessoal",
-    "Plans Additional": "Planos Adicionais"
+    "Plans Additional": "Planos Adicionais",
+
+    "Add Invoce": "Adicionar Fatura",
+    "Invoce": "Fatura",
+    "Invoces": "Faturas",
+    "Due date": "Vencimento",
+    "Paid": "Pago",
+    "Canceled": "Cancelado"
 }

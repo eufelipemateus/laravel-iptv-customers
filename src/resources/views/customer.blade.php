@@ -206,11 +206,11 @@
 
                                     @if($invoce->is_payed)
                                         <div class="col-md-3">
-                                            Pago
+                                        {{ __('Paid')}}
                                         </div>
                                     @elseif($invoce->is_canceled)
                                         <div class="col-md-3">
-                                            Cancelado
+                                        {{ __('Canceled')}}
                                         </div>
                                     @else
                                         <div class="col-md-3">

@@ -44,14 +44,14 @@
 						</div>
 
                         <div class="form-group">
-							<label for="payeddate_at" class="col-md-4 control-label">{{ __('Payed Date') }}</label>
+							<label for="payeddate_at" class="col-md-4 control-label">{{ __('Payment') }}</label>
 							<div class="col-md-6">
 								<input id="payeddate_at" type="text"   class="form-control" name="payeddate_at" value="@if(isset($CustomerInvoce->payeddate_at)){{ $CustomerInvoce->payeddate_at }}@endif" placeholder="" disabled autofocus>
 							</div>
 						</div>
 
                         <div class="form-group">
-							<label for="canceleddate_at" class="col-md-4 control-label">{{ __('Canceled Date') }}</label>
+							<label for="canceleddate_at" class="col-md-4 control-label">{{ __('Canceled') }}</label>
 							<div class="col-md-6">
 								<input id="canceleddate_at" type="text"   class="form-control" name="canceleddate_at" value="@if(isset($CustomerInvoce->canceleddate_at)){{ $CustomerInvoce->canceleddate_at }}@endif" placeholder="" disabled autofocus>
 							</div>

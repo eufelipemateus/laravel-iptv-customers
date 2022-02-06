@@ -30,14 +30,14 @@ class InvoceController extends CoreController
 
     public function pay($customer_id, $id){
         $customer = IPTVCustomerInvoce::find($id);
-        $customer->payeddate_at = now();
+        $customer->payment_at = now();
         $customer->save();
         return redirect()->route('show_customer', ['id'=>$customer_id]);
     }
 
     public function cancel($customer_id, $id){
         $customer = IPTVCustomerInvoce::find($id);
-        $customer->canceleddate_at = now();
+        $customer->canceled_at = now();
         $customer->save();
         return redirect()->route('show_customer', ['id'=>$customer_id]);
     }

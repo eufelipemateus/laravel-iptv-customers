@@ -17,8 +17,8 @@ class CreateIptvCustomerInvocesTable extends Migration
             $table->id();
             $table->foreignId('iptv_customer_id')->constrained('iptv_customers');
             $table->date('duedate_at');
-            $table->timestamp('payeddate_at')->nullable();
-            $table->timestamp('canceleddate_at')->nullable();
+            $table->timestamp('payment_at')->nullable();
+            $table->timestamp('canceled_at')->nullable();
         });
     }
 

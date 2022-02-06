@@ -23,7 +23,7 @@ class IPTVCustomerInvoce extends Model
      * @var array
      */
     protected $fillable = [
-        'iptv_customer_id', 'duedate_at', 'payeddate_at','canceleddate_at'
+        'iptv_customer_id', 'duedate_at', 'payment_at','canceled_at'
     ];
 
      /**
@@ -34,7 +34,7 @@ class IPTVCustomerInvoce extends Model
      */
     public function getIsPayedAttribute($value)
     {
-        if($this->payeddate_at){
+        if($this->payment_at){
             return true;
         }else{
             return false;
@@ -49,7 +49,7 @@ class IPTVCustomerInvoce extends Model
      */
     public function getIsCanceledAttribute($value)
     {
-        if($this->canceleddate_at){
+        if($this->canceled_at){
             return true;
         }else{
             return false;
