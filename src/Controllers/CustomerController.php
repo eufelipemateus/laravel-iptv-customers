@@ -43,8 +43,10 @@ class CustomerController extends CoreController
         $data["Planslist"] = IPTVPlan::activePlanList();
         $data["PlansAdditionallist"] = $data["Customer"]->planAditionalList();
         $data['Cdnslist'] = IPTVCdn::all();
-        $data['CustomerPlansAddionalList'] =   $data["Customer"]->plans_additional()->get();
-		return view("IPTV::customer",$data);
+        $data['CustomerPlansAddionalList'] = $data["Customer"]->plans_additional()->get();
+        $data['CustomerInvoceList'] = $data["Customer"]->customer_invoce()->get();
+
+        return view("IPTV::customer",$data);
 	}
 
     /**

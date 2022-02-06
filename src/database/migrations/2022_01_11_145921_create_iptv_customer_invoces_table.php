@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateIptvCustomerPlanAdditionalsTable extends Migration
+class CreateIptvCustomerInvocesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateIptvCustomerPlanAdditionalsTable extends Migration
      */
     public function up()
     {
-        Schema::create('iptv_customer_plan_additionals', function (Blueprint $table) {
+        Schema::create('iptv_customer_invoces', function (Blueprint $table) {
             $table->id();
             $table->foreignId('iptv_customer_id')->constrained('iptv_customers');
-            $table->foreignId('iptv_plans_id')->constrained('iptv_plans');
+            $table->date('duedate_at');
+            $table->timestamp('payeddate_at')->nullable();
+            $table->timestamp('canceleddate_at')->nullable();
         });
     }
 
@@ -27,6 +29,6 @@ class CreateIptvCustomerPlanAdditionalsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('iptv_customer_plan');
+        Schema::dropIfExists('iptv_customer_invoces');
     }
 }

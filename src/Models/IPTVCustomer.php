@@ -80,4 +80,11 @@ class IPTVCustomer extends Model
     }
 
 
+    /*
+     * Customer Invoces List
+     */
+     public function customer_invoce(){
+        return $this->hasMany(IPTVCustomerInvoce::class,  'iptv_customer_id');
+    }
+
 }
