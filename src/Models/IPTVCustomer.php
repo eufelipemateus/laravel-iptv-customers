@@ -15,7 +15,7 @@ class IPTVCustomer extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'hash_acess', 'iptv_plan_id','iptv_cdn_id'
+        'name', 'username', 'hash_acess', 'iptv_plan_id','iptv_cdn_id','active'
     ];
 
     protected $table = "iptv_customers";

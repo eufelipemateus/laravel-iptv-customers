@@ -93,7 +93,20 @@
 								</select>
 							</div>
 						</div>
-
+                        @if(@$Customer)
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input"
+                                type="checkbox"
+                                id="active-switch"
+                                value='1'
+                                name="active"
+                                @if(@$Customer->active) checked @endif>
+                                <label class="form-check-label"
+                                for="active-switch">{{ __('Customer Active') }}<label>
+                            </div>
+                        </div>
+                        @endif
 						<div class="row">
 							<div class="col-md-6 col-md-offset-5">
 								<button class="btn btn-primary">{{ __('Save')}}</button>

@@ -62,9 +62,8 @@ class CustomerController extends CoreController
 		]);
 		$data = $request->all();
         $data['hash_acess'] = md5(now());
-		$c = IPTVCustomer::create($data);
-		// Save Image
-		return redirect()->route('list_customer');
+		IPTVCustomer::create($data);
+        return redirect()->route('list_customer');
 	}
 
     /**
@@ -83,6 +82,8 @@ class CustomerController extends CoreController
 		]);
 
 		$data = $request->all();
+
+        $data['active'] = $request->boolean('active','bool');
 		$channel->update($data);
 
 		return redirect()->route('list_customer');
