@@ -43,8 +43,10 @@ class CustomerController extends CoreController
         $data["Planslist"] = IPTVPlan::activePlanList();
         $data["PlansAdditionallist"] = $data["Customer"]->planAditionalList();
         $data['Cdnslist'] = IPTVCdn::all();
-        $data['CustomerPlansAddionalList'] =   $data["Customer"]->plans_additional()->get();
-		return view("IPTV::customer",$data);
+        $data['CustomerPlansAddionalList'] = $data["Customer"]->plans_additional()->get();
+        $data['CustomerInvoceList'] = $data["Customer"]->customer_invoce()->get();
+
+        return view("IPTV::customer",$data);
 	}
 
     /**
@@ -60,9 +62,8 @@ class CustomerController extends CoreController
 		]);
 		$data = $request->all();
         $data['hash_acess'] = md5(now());
-		$c = IPTVCustomer::create($data);
-		// Save Image
-		return redirect()->route('list_customer');
+		IPTVCustomer::create($data);
+        return redirect()->route('list_customer');
 	}
 
     /**
@@ -81,6 +82,8 @@ class CustomerController extends CoreController
 		]);
 
 		$data = $request->all();
+
+        $data['active'] = $request->boolean('active','bool');
 		$channel->update($data);
 
 		return redirect()->route('list_customer');

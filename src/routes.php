@@ -41,6 +41,14 @@ Route::group([
             Route::post('/{customer_id}/plan_additional/add', 'FelipeMateus\IPTVCustomers\Controllers\CustomerPlanAdditionalController@add')->name('add_additional');
             Route::post('/{customer_id}/plan_additional/del', 'FelipeMateus\IPTVCustomers\Controllers\CustomerPlanAdditionalController@del')->name('del_additional');
 
+
+            Route::get('/{customer_id}/invoces/new', 'FelipeMateus\IPTVCustomers\Controllers\InvoceController@new')->name('new_customer');
+            Route::post('/{customer_id}/invoces/new', 'FelipeMateus\IPTVCustomers\Controllers\InvoceController@create')->name('create_customer');
+            Route::post('/{customer_id}/invoces/{id}/pay', 'FelipeMateus\IPTVCustomers\Controllers\InvoceController@pay')->name('pay_customer');
+            Route::post('/{customer_id}/invoces/{id}/cancel', 'FelipeMateus\IPTVCustomers\Controllers\InvoceController@cancel')->name('cancel_customer');
+
+
+
         });
     }
 );

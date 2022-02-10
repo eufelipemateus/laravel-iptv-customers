@@ -93,7 +93,20 @@
 								</select>
 							</div>
 						</div>
-
+                        @if(@$Customer)
+                        <div class="form-group">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input"
+                                type="checkbox"
+                                id="active-switch"
+                                value='1'
+                                name="active"
+                                @if(@$Customer->active) checked @endif>
+                                <label class="form-check-label"
+                                for="active-switch">{{ __('Customer Active') }}<label>
+                            </div>
+                        </div>
+                        @endif
 						<div class="row">
 							<div class="col-md-6 col-md-offset-5">
 								<button class="btn btn-primary">{{ __('Save')}}</button>
@@ -175,6 +188,57 @@
                                             <button  id="id-plan-{{$plan->id}}"type="submit" class="btn btn-link">delete plan</button>
                                         </form>
                                     </div>
+                                </div>
+                            </li>
+                        @endforeach
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-line">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+						<div class="col-md-10"><b>{{ __('Invoces')}}</b></div>
+                        <div class="col-md-2"><a href="{{  route('new_customer',$Customer->id) }}">{{ __('Add Invoce')}}</a></div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="">
+                        <ul class="list-group">
+                        @foreach($CustomerInvoceList as $invoce)
+                            <li class="list-group-item">
+                                <div class="row">
+                                    <div class="col-md-9">
+                                        <b> {{ __('Due date')}}:  {{  $invoce->duedate_at }}</b>
+                                    </div>
+
+                                    @if($invoce->is_payed)
+                                        <div class="col-md-3">
+                                        {{ __('Paid')}}
+                                        </div>
+                                    @elseif($invoce->is_canceled)
+                                        <div class="col-md-3">
+                                        {{ __('Canceled')}}
+                                        </div>
+                                    @else
+                                        <div class="col-md-3">
+                                            <form id="form-invoce-pay-{{$invoce->id}}" class="form-list-group"  action="{{ route('pay_customer', ['customer_id' => $Customer->id, 'id'=> $invoce->id]) }}" method="POST">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" id="iptv-invoce-id" name="iptv_invoce_id" value="{{$invoce->id}}">
+                                                <button  id="id-invoce-pay-{{$invoce->id}}"type="submit" class="btn btn-link">Pagar</button>
+                                            </form>
+                                            <form id="form-invoce-cancel-{{$invoce->id}}" class="form-list-group"  action="{{ route('cancel_customer', ['customer_id' => $Customer->id, 'id'=> $invoce->id]) }}" method="POST">
+                                                {{ csrf_field() }}
+                                                <input type="hidden" id="iptv-invoce-id" name="iptv_invoce_id" value="{{$invoce->id}}">
+                                                <button  id="id-invoce-cancel-{{$invoce->id}}"type="submit" class="btn btn-link">Cancelar</button>
+                                            </form>
+                                        </div>
+                                    @endif
                                 </div>
                             </li>
                         @endforeach
