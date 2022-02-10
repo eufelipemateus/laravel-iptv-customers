@@ -21,16 +21,17 @@ class CustomerMiddleware
         $AUTH_USER = 'admin';
         $AUTH_PASS = 'admin';
         header('Cache-Control: no-cache, must-revalidate, max-age=0');
-        /*$has_supplied_credentials = !(empty($_SERVER['PHP_AUTH_USER']) && empty($_SERVER['PHP_AUTH_PW']));
-        $is_not_authenticated = (
-            !$has_supplied_credentials ||
-            $_SERVER['PHP_AUTH_USER'] != $AUTH_USER ||
-            $_SERVER['PHP_AUTH_PW']   != $AUTH_PASS
-        );*/
-        $has_supplied_credentials = !(empty($_SERVER['PHP_AUTH_USER']) && empty($_SERVER['PHP_AUTH_PW']));
+
+        $has_supplied_credentials = !(
+            empty($_SERVER['PHP_AUTH_USER']) &&
+            empty($_SERVER['PHP_AUTH_PW'])
+        );
 
         if($has_supplied_credentials){
-            $custormer =IPTVCustomer::where("username",$_SERVER['PHP_AUTH_USER'])->where('hash_acess',$_SERVER['PHP_AUTH_PW'])->first();
+            $custormer = IPTVCustomer::where("username",$_SERVER['PHP_AUTH_USER'])
+            ->where('hash_acess',$_SERVER['PHP_AUTH_PW'])
+            ->first();
+
             $request->custormer = $custormer;
         }
 
@@ -45,6 +46,20 @@ class CustomerMiddleware
             echo "This operation is unthorizated!";
             exit();
         }
+
+        if(!$custormer->active){
+            header('HTTP/1.1 401 CUSTOMER INACTIVE');
+            echo "This Customer is not Active!";
+            exit();
+        }
+
+
+        if($custormer->defeated){
+            header('HTTP/1.1 401 CUSTOMER INVOCE DEFEATED');
+            echo "This Customer is defeated!";
+            exit();
+        }
+
         return $next($request);
     }
 }

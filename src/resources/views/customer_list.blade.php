@@ -24,8 +24,12 @@
 							<div class="col-md-4">
 								<b>{{ $customer->username }}</b>
                             </div>
-							<div class="col-md-4">
+							<div class="col-md-2">
 								{{ $customer->plan->name }}
+							</div>
+
+                            <div class="col-md-2">
+							@if( $customer->active)	{{ __('Active') }}  @else   {{ __('Inactive') }}  @endif
 							</div>
 
 							<div class="col-md-2">

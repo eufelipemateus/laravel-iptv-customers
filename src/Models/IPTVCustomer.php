@@ -15,7 +15,7 @@ class IPTVCustomer extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'username', 'hash_acess', 'iptv_plan_id','iptv_cdn_id'
+        'name', 'username', 'hash_acess', 'iptv_plan_id','iptv_cdn_id','active'
     ];
 
     protected $table = "iptv_customers";
@@ -79,5 +79,29 @@ class IPTVCustomer extends Model
         return IPTVPlan::where('active', 1)->where('additional', 1)->whereNotIn('id', $exclude)->get();
     }
 
+
+    /*
+     * Customer Invoces List
+     */
+     public function customer_invoce(){
+        return $this->hasMany(IPTVCustomerInvoce::class,  'iptv_customer_id');
+    }
+
+     /**
+     * Get  defeated
+     *
+     * @param  string  $value
+     * @return boolean
+     */
+    public function getDefeatedAttribute(){
+
+        $first_day_this_month = date('Y-m-01');
+        $last_day_this_month  = date('Y-m-t');
+
+        return IPTVCustomerInvoce::whereBetween('duedate_at', [$first_day_this_month, $last_day_this_month ])
+        ->where('payment_at','=',null)
+        ->where('canceled_at','=',null)
+        ->count();
+    }
 
 }
