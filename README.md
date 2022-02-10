@@ -9,8 +9,6 @@ This a Laravel package controls all customers and plans integrated with [iptv-ch
 
 ## Instaling
 
-Tested in Laravel 8.54.
-
 ### Run the command below in root to install the package in your project.
 
 ```bash

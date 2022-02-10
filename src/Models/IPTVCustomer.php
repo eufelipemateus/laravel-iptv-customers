@@ -87,4 +87,21 @@ class IPTVCustomer extends Model
         return $this->hasMany(IPTVCustomerInvoce::class,  'iptv_customer_id');
     }
 
+     /**
+     * Get  defeated
+     *
+     * @param  string  $value
+     * @return boolean
+     */
+    public function getDefeatedAttribute(){
+
+        $first_day_this_month = date('Y-m-01');
+        $last_day_this_month  = date('Y-m-t');
+
+        return IPTVCustomerInvoce::whereBetween('duedate_at', [$first_day_this_month, $last_day_this_month ])
+        ->where('payment_at','=',null)
+        ->where('canceled_at','=',null)
+        ->count();
+    }
+
 }

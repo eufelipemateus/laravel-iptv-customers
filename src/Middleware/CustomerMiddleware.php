@@ -48,8 +48,15 @@ class CustomerMiddleware
         }
 
         if(!$custormer->active){
-            header('HTTP/1.1 401 USER INACTIVE');
-            echo "This user is not Active!";
+            header('HTTP/1.1 401 CUSTOMER INACTIVE');
+            echo "This Customer is not Active!";
+            exit();
+        }
+
+
+        if($custormer->defeated){
+            header('HTTP/1.1 401 CUSTOMER INVOCE DEFEATED');
+            echo "This Customer is defeated!";
             exit();
         }
 
