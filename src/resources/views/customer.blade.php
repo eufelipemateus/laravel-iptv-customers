@@ -93,6 +93,18 @@
 								</select>
 							</div>
 						</div>
+
+                        <div class="form-group">
+							<label for="cdn_id" class="col-md-4 control-label">{{ __('CDN') }}</label>
+                            <div class="col-md-6">
+								<select id="cdn_id" class="form-control" name="due_day"   >
+                                    @for ($i = 5; $i < 30; $i=$i+5)
+										<option @if(isset($Customer->due_day)) @if($Customer->due_day == $i) selected   @endif @endif value="{{$i}}">{{$i}}</option>
+                                    @endfor
+                                </select>
+							</div>
+						</div>
+
                         @if(@$Customer)
                         <div class="form-group">
                             <div class="form-check form-switch">
