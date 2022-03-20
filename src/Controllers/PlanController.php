@@ -4,8 +4,9 @@ namespace  FelipeMateus\IPTVCustomers\Controllers;
 
 use Illuminate\Http\Request;
 use FelipeMateus\IPTVCustomers\Models\IPTVPlan;
-use  FelipeMateus\IPTVChannels\Model\IPTVChannelGroup;
+use FelipeMateus\IPTVChannels\Model\IPTVChannelGroup;
 use FelipeMateus\IPTVCore\Controllers\CoreController;
+use FelipeMateus\IPTVGatewayPayment\Models\IPTVTaxVat;
 
 class PlanController extends CoreController
 {
@@ -25,7 +26,8 @@ class PlanController extends CoreController
      * @return view -> IPTV::plan
      */
 	public function new(){
-		return view("IPTV::plan");
+        $data['TaxVatList'] = IPTVTaxVat::where('active', true)->get();
+		return view("IPTV::plan", $data);
 	}
 
     /**
@@ -35,6 +37,8 @@ class PlanController extends CoreController
      */
     public function create(Request $request){
 		$data = $request->all();
+        $data = $request->except(['iptv_tax_vat_id']);
+        $tax_vat = $request->only('iptv_tax_vat_id')['iptv_tax_vat_id'];
 		IPTVPlan::create($data);
 		return redirect()->route('list_plan');
 	}
@@ -49,6 +53,7 @@ class PlanController extends CoreController
 		$data["Plan"] = IPTVPlan::findOrFail($id);
         $data['GroupList'] = $data["Plan"]->groupsList();
         $data['PlanGroupList'] =$data["Plan"]->groups;
+        $data['TaxVatList'] = IPTVTaxVat::where('active', true)->get();
 		return view("IPTV::plan",$data);
 	}
 
@@ -60,7 +65,9 @@ class PlanController extends CoreController
      */
     public function update($id,Request $request){
 		$plan =IPTVPlan::findOrFail($id);
-        $data = $request->all();
+        $data = $request->except(['iptv_tax_vat_id']);
+        $tax_vat = $request->only('iptv_tax_vat_id')['iptv_tax_vat_id'];
+
 		$plan->update($data);
 
         if(!isset($data['active'])){
@@ -73,6 +80,14 @@ class PlanController extends CoreController
 			$plan->additional=false;
 		}else{
 			$plan->additional=true;
+		}
+
+        if(isset($tax_vat)  ){
+			$plan->iptv_tax_vat_id= ($tax_vat == 'null')?
+                null
+            :
+                $tax_vat
+            ;
 		}
 
         $plan->save();

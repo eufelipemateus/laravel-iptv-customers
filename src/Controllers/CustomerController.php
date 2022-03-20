@@ -8,6 +8,7 @@ use FelipeMateus\IPTVCustomers\Models\IPTVPlan;
 use FelipeMateus\IPTVCustomers\Models\IPTVCustomer;
 use FelipeMateus\IPTVCore\Controllers\CoreController;
 use FelipeMateus\IPTVChannels\Model\IPTVCdn;
+use FelipeMateus\IPTVGatewayPayment\Models\IPTVGateway;
 
 class CustomerController extends CoreController
 {
@@ -45,6 +46,7 @@ class CustomerController extends CoreController
         $data['Cdnslist'] = IPTVCdn::all();
         $data['CustomerPlansAddionalList'] = $data["Customer"]->plans_additional()->get();
         $data['CustomerInvoceList'] = $data["Customer"]->customer_invoce()->get();
+        $data['GatewaysList'] = IPTVGateway::where('active',1)->get();
 
         return view("IPTV::customer",$data);
 	}

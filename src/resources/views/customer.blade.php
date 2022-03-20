@@ -95,7 +95,7 @@
 						</div>
 
                         <div class="form-group">
-							<label for="cdn_id" class="col-md-4 control-label">{{ __('CDN') }}</label>
+							<label for="cdn_id" class="col-md-4 control-label">{{ __('Due Day') }}</label>
                             <div class="col-md-6">
 								<select id="cdn_id" class="form-control" name="due_day"   >
                                     @for ($i = 5; $i < 30; $i=$i+5)
@@ -239,11 +239,16 @@
                                         </div>
                                     @else
                                         <div class="col-md-3">
-                                            <form id="form-invoce-pay-{{$invoce->id}}" class="form-list-group"  action="{{ route('pay_customer', ['customer_id' => $Customer->id, 'id'=> $invoce->id]) }}" method="POST">
+                                        @foreach($GatewaysList as $gateway)
+
+                                            <form id="form-invoce-{{$gateway->cod}}-{{$invoce->id}}" class="form-list-group"  action="{{ route('pay_customer', ['customer_id' => $Customer->id, 'id'=> $invoce->id]) }}" method="POST">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" id="iptv-invoce-id" name="iptv_invoce_id" value="{{$invoce->id}}">
-                                                <button  id="id-invoce-pay-{{$invoce->id}}"type="submit" class="btn btn-link">Pagar</button>
+                                                <button  id="id-invoce-{{$gateway->cod}}-{{$invoce->id}}"type="submit" class="btn btn-link">Pagar</button>
                                             </form>
+
+                                        @endforeach
+
                                             <form id="form-invoce-cancel-{{$invoce->id}}" class="form-list-group"  action="{{ route('cancel_customer', ['customer_id' => $Customer->id, 'id'=> $invoce->id]) }}" method="POST">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" id="iptv-invoce-id" name="iptv_invoce_id" value="{{$invoce->id}}">

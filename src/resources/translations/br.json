@@ -26,5 +26,6 @@
     "Invoces": "Faturas",
     "Due date": "Vencimento",
     "Paid": "Pago",
-    "Canceled": "Cancelado"
+    "Canceled": "Cancelado",
+    "Due Day":"Dia de Vencimento"
 }

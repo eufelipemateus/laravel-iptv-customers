@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class UptadeIptvCustomersTable extends Migration
+class UpdateDueIptvCustomersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,6 @@ class UptadeIptvCustomersTable extends Migration
      */
     public function up()
     {
-        //
         //
         Schema::table('iptv_customers', function (Blueprint $table) {
             $table->enum('due_day', [5,10,15,20,25])->default(15);

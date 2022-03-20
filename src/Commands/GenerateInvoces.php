@@ -43,20 +43,15 @@ class GenerateInvoces extends Command
     {
 
         $this->info( sprintf('Generating invoices for the month %s.', date('m/Y')) );
-
         $customers = IPTVCustomer::where("active",1)->get();
 
         foreach($customers as $customer){
-
             $format = sprintf('Y-m-%d', $customer->due_day);
             $due_day_this_month = date($format);
-
             IPTVCustomerInvoce::create(['duedate_at'=>$due_day_this_month,'iptv_customer_id'=> $customer->id]);
-
             $message = sprintf('Generated invoce to %s with due date %s.', $customer->name, $due_day_this_month );
             $this->warn($message);
         }
-
         $this->info('All Invoces generate successfully.');
     }
 }
