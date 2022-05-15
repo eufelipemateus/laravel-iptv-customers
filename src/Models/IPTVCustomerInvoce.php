@@ -56,5 +56,14 @@ class IPTVCustomerInvoce extends Model
         }
     }
 
+    /**
+     * customer do invoce
+     *
+     *  @return realation
+     *
+    */
+    public function customer(){
+        return $this->belongsTo('FelipeMateus\IPTVCustomers\Models\IPTVCustomer', 'iptv_customer_id');
+    }
 
 }

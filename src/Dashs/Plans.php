@@ -2,7 +2,7 @@
 
 namespace FelipeMateus\IPTVCustomers\Dashs;
 
-use FelipeMateus\IPTVCore\Class\IPTVDashBase;
+use FelipeMateus\IPTVCore\Helpers\IPTVDashBase;
 use FelipeMateus\IPTVCustomers\Models\IPTVPlan;
 
 class Plans extends IPTVDashBase {

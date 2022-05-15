@@ -50,6 +50,18 @@
 							</div>
 						</div>
 
+                        <div class="form-group">
+							<label for="tax_id" class="col-md-4 control-label">{{ __('Tax') }}</label>
+							<div class="col-md-6">
+								<select id="tax_id" class="form-control" name="iptv_tax_vat_id"   >
+                                    <option value="null">0% </option>
+									@foreach($TaxVatList as $tax)
+										<option @if(isset($Plan->iptv_tax_vat_id)) @if($Plan->iptv_tax_vat_id==$tax->id)  selected @endif @endif value="{{ $tax->id}}">{{$tax->name }} - {{ $tax->porcent}}% </option>
+									@endforeach
+								</select>
+							</div>
+						</div>
+
 
                         <div class="form-group">
                             <div class="form-check form-switch">

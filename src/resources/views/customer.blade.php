@@ -73,6 +73,62 @@
 						</div>
 
                         <div class="form-group">
+							<label for="industry" class="col-md-4 control-label">{{ __('Industry') }}</label>
+							<div class="col-md-6">
+								<input id="industry" type="text" class="form-control" name="industry" value="@if(isset($Customer->industry)){{ $Customer->industry }}@endif" placeholder=""  autofocus>
+                                @if ($errors->has('industry'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('industry') }}</strong>
+                                    </span>
+                                @endif
+							</div>
+						</div>
+                        <div class="form-group">
+							<label for="address" class="col-md-4 control-label">{{ __('Address') }}</label>
+							<div class="col-md-6">
+								<input id="address" type="text" class="form-control" name="address" value="@if(isset($Customer->address)){{ $Customer->address }}@endif" placeholder=""  autofocus>
+                                @if ($errors->has('address'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('address') }}</strong>
+                                    </span>
+                                @endif
+							</div>
+						</div>
+                        <div class="form-group">
+							<label for="phone" class="col-md-4 control-label">{{ __('Phone') }}</label>
+							<div class="col-md-6">
+								<input id="phone" type="text" class="form-control" name="phone" value="@if(isset($Customer->phone)){{ $Customer->phone }}@endif" placeholder=""  autofocus>
+                                @if ($errors->has('phone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+							</div>
+						</div>
+                        <div class="form-group">
+							<label for="email" class="col-md-4 control-label">{{ __('E-mail') }}</label>
+							<div class="col-md-6">
+								<input id="email" type="text" class="form-control" name="email" value="@if(isset($Customer->email)){{ $Customer->email }}@endif" placeholder=""  autofocus>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
+							</div>
+						</div>
+                        <div class="form-group">
+							<label for="tax_no" class="col-md-4 control-label">{{ __('Tax Number') }}</label>
+							<div class="col-md-6">
+								<input id="tax_no" type="text" class="form-control" name="tax_no" value="@if(isset($Customer->tax_no)){{ $Customer->tax_no }}@endif" placeholder=""  autofocus>
+                                @if ($errors->has('tax_no'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('tax_no') }}</strong>
+                                    </span>
+                                @endif
+							</div>
+						</div>
+
+                        <div class="form-group">
 							<label for="plan_id" class="col-md-4 control-label">{{ __('Plan') }}</label>
 							<div class="col-md-6">
 								<select id="plan_id" class="form-control" name="iptv_plan_id"   >
@@ -93,6 +149,18 @@
 								</select>
 							</div>
 						</div>
+
+                        <div class="form-group">
+							<label for="cdn_id" class="col-md-4 control-label">{{ __('Due Day') }}</label>
+                            <div class="col-md-6">
+								<select id="cdn_id" class="form-control" name="due_day"   >
+                                    @for ($i = 5; $i < 30; $i=$i+5)
+										<option @if(isset($Customer->due_day)) @if($Customer->due_day == $i) selected   @endif @endif value="{{$i}}">{{$i}}</option>
+                                    @endfor
+                                </select>
+							</div>
+						</div>
+
                         @if(@$Customer)
                         <div class="form-group">
                             <div class="form-check form-switch">
@@ -227,11 +295,16 @@
                                         </div>
                                     @else
                                         <div class="col-md-3">
-                                            <form id="form-invoce-pay-{{$invoce->id}}" class="form-list-group"  action="{{ route('pay_customer', ['customer_id' => $Customer->id, 'id'=> $invoce->id]) }}" method="POST">
+                                        @foreach($GatewaysList as $gateway)
+
+                                            <form id="form-invoce-{{$gateway->cod}}-{{$invoce->id}}" class="form-list-group"  action="{{ route('pay_customer', ['customer_id' => $Customer->id, 'id'=> $invoce->id]) }}" method="POST">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" id="iptv-invoce-id" name="iptv_invoce_id" value="{{$invoce->id}}">
-                                                <button  id="id-invoce-pay-{{$invoce->id}}"type="submit" class="btn btn-link">Pagar</button>
+                                                <button  id="id-invoce-{{$gateway->cod}}-{{$invoce->id}}"type="submit" class="btn btn-link">Pagar</button>
                                             </form>
+
+                                        @endforeach
+
                                             <form id="form-invoce-cancel-{{$invoce->id}}" class="form-list-group"  action="{{ route('cancel_customer', ['customer_id' => $Customer->id, 'id'=> $invoce->id]) }}" method="POST">
                                                 {{ csrf_field() }}
                                                 <input type="hidden" id="iptv-invoce-id" name="iptv_invoce_id" value="{{$invoce->id}}">

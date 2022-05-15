@@ -5,9 +5,10 @@ namespace FelipeMateus\IPTVCustomers;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 use FelipeMateus\IPTVCustomers\Middleware\CustomerMiddleware;
-use FelipeMateus\IPTVCore\Class\IPTVProviderBase;
+use FelipeMateus\IPTVCore\Helpers\IPTVProviderBase;
 use FelipeMateus\IPTVCustomers\Dashs\Customers;
 use FelipeMateus\IPTVCustomers\Dashs\Plans;
+use FelipeMateus\IPTVCustomers\Commands\GenerateInvoces;
 
 class IPTVProvider extends IPTVProviderBase
 {
@@ -27,9 +28,8 @@ class IPTVProvider extends IPTVProviderBase
         $this->loadJSONTranslationsFrom(__DIR__.'/resources/translations');
         $this->loadMenusFrom(__DIR__.'/resources/menu');
         $this->registerDashboard();
+        $this->registerCommands();
     }
-
-
 
     /**
      * Register the application services.
@@ -61,5 +61,17 @@ class IPTVProvider extends IPTVProviderBase
         $this->loadDashFrom(Plans::class);
     }
 
+    /**
+     * Register Commands
+     *
+     * @return void
+     */
+    private function registerCommands(){
+        if ($this->app->runningInConsole()) {
+            $this->commands([
+                GenerateInvoces::class,
+            ]);
+        }
+    }
 
 }

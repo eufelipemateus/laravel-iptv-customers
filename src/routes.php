@@ -47,8 +47,8 @@ Route::group([
             Route::post('/{customer_id}/invoces/{id}/pay', 'FelipeMateus\IPTVCustomers\Controllers\InvoceController@pay')->name('pay_customer');
             Route::post('/{customer_id}/invoces/{id}/cancel', 'FelipeMateus\IPTVCustomers\Controllers\InvoceController@cancel')->name('cancel_customer');
 
-
-
         });
+
+        //Route::get('/pay/{cod}/{invoce_id}', 'FelipeMateus\IPTVCustomers\Controllers\PayController@checkout')->name('pay');
     }
 );

@@ -4,6 +4,7 @@ namespace FelipeMateus\IPTVCustomers\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use FelipeMateus\IPTVGatewayPayment\Models\IPTVTaxVat;
 
 class IPTVPlan extends Model
 {
@@ -15,7 +16,7 @@ class IPTVPlan extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'price', 'active', 'additional'
+        'name', 'price', 'active', 'additional','iptv_tax_vat_id'
     ];
 
     protected $table = "iptv_plans";
@@ -36,5 +37,9 @@ class IPTVPlan extends Model
 
     static public function activePlanList(){
         return self::where("active",1)->where("additional",0)->get();
+    }
+
+    public function tax_vat (){
+        return $this->belongsTo(IPTVTaxVat::class, 'iptv_tax_vat_id');
     }
 }

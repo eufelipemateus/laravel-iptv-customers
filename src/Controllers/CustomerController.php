@@ -8,6 +8,7 @@ use FelipeMateus\IPTVCustomers\Models\IPTVPlan;
 use FelipeMateus\IPTVCustomers\Models\IPTVCustomer;
 use FelipeMateus\IPTVCore\Controllers\CoreController;
 use FelipeMateus\IPTVChannels\Model\IPTVCdn;
+use FelipeMateus\IPTVGatewayPayment\Models\IPTVGateway;
 
 class CustomerController extends CoreController
 {
@@ -35,8 +36,8 @@ class CustomerController extends CoreController
     /**
      * Show page from customer with id.
      *
-     * @param $id - channewl id
-     * @return view -> IPTV:chanel
+     * @param $id - customer id
+     * @return view -> IPTV::customer
      */
 	public function show($id){
 		$data["Customer"]  = IPTVCustomer::findOrFail($id);
@@ -45,59 +46,70 @@ class CustomerController extends CoreController
         $data['Cdnslist'] = IPTVCdn::all();
         $data['CustomerPlansAddionalList'] = $data["Customer"]->plans_additional()->get();
         $data['CustomerInvoceList'] = $data["Customer"]->customer_invoce()->get();
+        $data['GatewaysList'] = IPTVGateway::where('active',1)->get();
 
         return view("IPTV::customer",$data);
 	}
 
     /**
-     * Save new data from new channel in database.
+     * Save new data from new customer in database.
      *
-     * @return redirect -> list_channels
+     * @return redirect -> show_costumer
      */
     public function create(Request $request){
 		$this->validate($request, [
 			'name' => 'string|required',
 			'username' => 'required|string',
 			'iptv_plan_id' => 'required|exists:iptv_plans,id',
+            'industry'=>'string|nullable',
+            'address'=>'string|nullable',
+            'phone'=>'string|nullable',
+            'email'=>'string|nullable',
+            'tax_no'=>'string|nullable',
 		]);
 		$data = $request->all();
         $data['hash_acess'] = md5(now());
-		IPTVCustomer::create($data);
-        return redirect()->route('list_customer');
+	    $customer  = 	IPTVCustomer::create($data);
+        return redirect()->route('show_customer',['id'=>$customer->id]);
 	}
 
     /**
-     * Save new data from new channel in database.
+     * Update customer in database.
      *
-     * @param id from channel
-     * @return redirect -> list_channels
+     * @param id from customer
+     * @return redirect -> list_customers
      */
 	public function update($id,Request $request){
-		$channel =IPTVCustomer::findOrFail($id);
+		$customer =IPTVCustomer::findOrFail($id);
 
 		$this->validate($request, [
 			'name' => 'string|required',
 			'username' => 'required|string',
 			'iptv_plan_id' => 'required|exists:iptv_plans,id',
+            'industry'=>'string|nullable',
+            'address'=>'string|nullable',
+            'phone'=>'string|nullable',
+            'email'=>'string|nullable',
+            'tax_no'=>'string|nullable',
+            'active'=>'boolean',
 		]);
 
 		$data = $request->all();
-
         $data['active'] = $request->boolean('active','bool');
-		$channel->update($data);
+		$customer->update($data);
 
-		return redirect()->route('list_customer');
+        return redirect()->route('show_customer',['id'=>$customer->id]);
 	}
 
     /**
-     * Delete channel form database.
+     * Delete customer form database.
      *
-     * @param id from channel
+     * @param id from customer
      * @return redirect -> list_customer
      */
     public function delete($id,Request $request){
-		$group =IPTVCustomer::findOrFail($id);
-		$group->delete();
+		$customer =IPTVCustomer::findOrFail($id);
+		$customer->delete();
 		return redirect()->route('list_customer');
 	}
 
