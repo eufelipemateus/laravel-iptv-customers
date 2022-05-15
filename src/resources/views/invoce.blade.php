@@ -103,7 +103,12 @@ body {
           </div>
           <div class="panel-body">
             <dl class="dl-horizontal">
-              <dt>Name</dt>
+             @foreach($ConfigData  as  $value)
+              <dt>{{ __($value['name']) }}</dt>
+              <dd>{{  $value['val'] }}</dd>
+             @endforeach
+             <!--
+              <dt>Business Name</dt>
               <dd><strong>Acme Corporation</strong></dd>
               <dt>Industry</dt>
               <dd>Software Development</dd>
@@ -116,7 +121,7 @@ body {
               <dt>Tax NO</dt>
               <dd class="mono">123456789</dd>
               <dt>Tax Office</dt>
-              <dd>A' Moon</dd>
+              <dd>A' Moon</dd>-->
           </div>
         </div>
       </div>
@@ -130,15 +135,15 @@ body {
               <dt>Name</dt>
               <dd>{{ $invoce->customer->name}}</dd>
               <dt>Industry</dt>
-              <dd>Software Development</dd>
+              <dd>{{ $invoce->customer->industry}}</dd>
               <dt>Address</dt>
-              <dd>One Microsoft Way Redmond, WA 98052-7329, USA</dd>
+              <dd>{{ $invoce->customer->address}}</dd>
               <dt>Phone</dt>
-              <dd>(425) 882-8080</dd>
+              <dd>{{ $invoce->customer->phone}}</dd>
               <dt>Email</dt>
-              <dd>contact@microsoft.com</dd>
+              <dd>{{ $invoce->customer->email}}</dd>
               <dt>Tax NO</dt>
-              <dd class="mono">123456789</dd>
+              <dd class="mono">{{ $invoce->customer->tax_no}}</dd>
               <dt>&nbsp;</dt>
               <dd>&nbsp;</dd>
           </div>

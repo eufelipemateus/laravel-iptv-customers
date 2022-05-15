@@ -27,5 +27,9 @@
     "Due date": "Vencimento",
     "Paid": "Pago",
     "Canceled": "Cancelado",
-    "Due Day":"Dia de Vencimento"
+    "Due Day":"Dia de Vencimento",
+    "Address": "Endereço",
+    "Industry": "Atividade",
+    "Tax Number": "CNPJ",
+    "Phone": "Telefone"
 }

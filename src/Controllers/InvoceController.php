@@ -7,7 +7,9 @@ use FelipeMateus\IPTVCore\Controllers\CoreController;
 use FelipeMateus\IPTVCustomers\Models\IPTVCustomerInvoce;
 use FelipeMateus\IPTVCustomers\Models\IPTVCustomer;
 use FelipeMateus\IPTVCustomers\Requests\IPTVCustomerInvoceCreateInvoceRequest;
-use  FelipeMateus\IPTVGatewayPayment\Models\IPTVGateway;
+use FelipeMateus\IPTVGatewayPayment\Models\IPTVGateway;
+use FelipeMateus\IPTVCore\Model\IPTVConfig;
+
 use DateTime;
 
 class InvoceController extends CoreController
@@ -33,6 +35,8 @@ class InvoceController extends CoreController
     public function pay($customer_id, $id){
         $data['invoce'] = IPTVCustomerInvoce::find($id);
         $data['GatewaysList'] = IPTVGateway::where('active', true)->get();
+        $data['ConfigData'] = IPTVConfig::getAllStringSettings();
+
         $data['subtotal'] = 0;
         $data['totalDiscount'] = 0;
         $data['total'] = 0 ;
