@@ -109,10 +109,21 @@ class IPTVCustomer extends Model
         $first_day_this_month = date('Y-m-01');
         $last_day_this_month  = date('Y-m-t');
 
-        return IPTVCustomerInvoce::whereBetween('duedate_at', [$first_day_this_month, $last_day_this_month ])
+        $this_month_deafeted =  IPTVCustomerInvoce::whereBetween('duedate_at', [$first_day_this_month, $last_day_this_month ])
         ->where('payment_at','=',null)
         ->where('canceled_at','=',null)
         ->count();
+
+        $before_months = IPTVCustomerInvoce::where('duedate_at', '<', $first_day_this_month)
+        ->where('payment_at','=',null)
+        ->where('canceled_at','=',null)
+        ->count();
+
+        if($this_month_deafeted || $before_months){
+            return true;
+        }
+
+        return false;
     }
 
 }
