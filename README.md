@@ -28,7 +28,7 @@ php artisan migrate
 
 - [more info about iptv-customers](https://felipemateus.com/blog/2021/10/gerenciador-iptv-customer)
 
-- To add new locale compatibility you need contribute to [iptv-core](https://github.com/eufelipemateus/laravel-iptv-core/blob/main/src/Class/Locale.php) first.
+- To add new locale compatibility you need contribute to [iptv-core](https://github.com/eufelipemateus/laravel-iptv-core/blob/main/src/Helpers/Locale.php) first.
 
 - [Discord Channel to discussion about sugestion,Feature and etc.](https://discord.com/channels/885888529845076078/953528360615690270)
 
