@@ -1,6 +1,5 @@
 {
     "name": "felipemateus/iptv-customers",
-    "version": "0.2.0",
     "description": "This package controls the IPTV Customers list and generates an m3u8 file for each customer using laravel.",
     "type": "library",
     "license": "MIT",
