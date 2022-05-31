@@ -55,6 +55,6 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "suggest": {
-        "felipemateus/iptv-customers": "Allows you to control customers, plans assigned to each channel."
+        "felipemateus/iptv-channels": "Allows you to control channels, groups and cdn."
     }
 }
