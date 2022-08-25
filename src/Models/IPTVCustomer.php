@@ -37,7 +37,7 @@ class IPTVCustomer extends Model
        $cdn =  IPTVCdn::findOrFail($this->iptv_cdn_id);
 
 
-        return http_build_url(route("client-playlist",['slug'=>$cdn->name]),
+        return http_build_url(route("client-playlist",['slug'=>$cdn->slug]),
             array(
                 "user" => $this->username,
                 "pass" => $this->hash_acess,
