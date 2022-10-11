@@ -37,7 +37,7 @@
         "laravel/framework": "^9.11",
         "tschope/iptv-core":"^2.0",
         "tschope/iptv-channels": "^4.0",
-        "tschope/http-build-url": "^0.0.1",
+        "felipemateus/http-build-url": "^0.0.1",
         "tschope/laravel-iptv-gateway-payment":"^1.0"
 	},
 	"autoload": {
