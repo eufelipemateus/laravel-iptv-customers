@@ -1,5 +1,5 @@
 {
-    "name": "felipemateus/iptv-customers",
+    "name": "tschope/iptv-customers",
     "description": "This package controls the IPTV Customers list and generates an m3u8 file for each customer using laravel.",
     "type": "library",
     "license": "MIT",
@@ -35,26 +35,26 @@
     "require": {
         "php": "^8.0|^8.0",
         "laravel/framework": "^9.11",
-        "felipemateus/iptv-core":"^2.0",
-        "felipemateus/iptv-channels": "^4.0",
-        "felipemateus/http-build-url": "^0.0.1",
-        "felipemateus/laravel-iptv-gateway-payment":"^1.0"
+        "tschope/iptv-core":"^2.0",
+        "tschope/iptv-channels": "^4.0",
+        "tschope/http-build-url": "^0.0.1",
+        "tschope/laravel-iptv-gateway-payment":"^1.0"
 	},
 	"autoload": {
         "psr-4": {
-			"FelipeMateus\\IPTVCustomers\\":"src/"
+			"Tschope\\IPTVCustomers\\":"src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "FelipeMateus\\IPTVCustomers\\IPTVProvider"
+                "Tschope\\IPTVCustomers\\IPTVProvider"
             ]
         }
     },
     "minimum-stability": "stable",
     "prefer-stable": true,
     "suggest": {
-        "felipemateus/iptv-channels": "Allows you to control channels, groups and cdn."
+        "tschope/iptv-channels": "Allows you to control channels, groups and cdn."
     }
 }

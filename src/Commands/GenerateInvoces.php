@@ -1,12 +1,12 @@
 <?php
 
-namespace FelipeMateus\IPTVCustomers\Commands;
+namespace Tschope\IPTVCustomers\Commands;
 
 use App\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
-use FelipeMateus\IPTVCustomers\Models\IPTVCustomer;
-use FelipeMateus\IPTVCustomers\Models\IPTVCustomerInvoce;
+use Tschope\IPTVCustomers\Models\IPTVCustomer;
+use Tschope\IPTVCustomers\Models\IPTVCustomerInvoce;
 
 class GenerateInvoces extends Command
 {

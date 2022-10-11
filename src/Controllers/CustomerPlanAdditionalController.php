@@ -1,12 +1,12 @@
 <?php
 
-namespace FelipeMateus\IPTVCustomers\Controllers;
+namespace Tschope\IPTVCustomers\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use FelipeMateus\IPTVCore\Controllers\CoreController;
-use FelipeMateus\IPTVCustomers\Models\IPTVCustomer;
-use FelipeMateus\IPTVCustomers\Models\IPTVPlan;
+use Tschope\IPTVCore\Controllers\CoreController;
+use Tschope\IPTVCustomers\Models\IPTVCustomer;
+use Tschope\IPTVCustomers\Models\IPTVPlan;
 
 class CustomerPlanAdditionalController extends CoreController
 {

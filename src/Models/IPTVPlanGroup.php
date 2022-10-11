@@ -1,8 +1,8 @@
 <?php
 
-namespace FelipeMateus\IPTVCustomers\Models;
+namespace Tschope\IPTVCustomers\Models;
 
-use FelipeMateus\IPTVChannels\Model\IPTVChannelGroup;
+use Tschope\IPTVChannels\Model\IPTVChannelGroup;
 
 /**
  *  This class represent channel group in custumers package.

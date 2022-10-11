@@ -1,14 +1,14 @@
 <?php
 
-namespace FelipeMateus\IPTVCustomers\Controllers;
+namespace Tschope\IPTVCustomers\Controllers;
 
 use Illuminate\Http\Request;
-use FelipeMateus\IPTVCore\Controllers\CoreController;
-use FelipeMateus\IPTVCustomers\Models\IPTVCustomerInvoce;
-use FelipeMateus\IPTVCustomers\Models\IPTVCustomer;
-use FelipeMateus\IPTVCustomers\Requests\IPTVCustomerInvoceCreateInvoceRequest;
-use FelipeMateus\IPTVGatewayPayment\Models\IPTVGateway;
-use FelipeMateus\IPTVCore\Model\IPTVConfig;
+use Tschope\IPTVCore\Controllers\CoreController;
+use Tschope\IPTVCustomers\Models\IPTVCustomerInvoce;
+use Tschope\IPTVCustomers\Models\IPTVCustomer;
+use Tschope\IPTVCustomers\Requests\IPTVCustomerInvoceCreateInvoceRequest;
+use Tschope\IPTVGatewayPayment\Models\IPTVGateway;
+use Tschope\IPTVCore\Model\IPTVConfig;
 
 use DateTime;
 

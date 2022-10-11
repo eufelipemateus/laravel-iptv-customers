@@ -1,10 +1,10 @@
 <?php
 
-namespace FelipeMateus\IPTVCustomers\Models;
+namespace Tschope\IPTVCustomers\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use FelipeMateus\IPTVChannels\Model\IPTVCdn;
+use Tschope\IPTVChannels\Model\IPTVCdn;
 
 class IPTVCustomer extends Model
 {

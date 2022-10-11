@@ -1,14 +1,14 @@
 <?php
 
-namespace FelipeMateus\IPTVCustomers;
+namespace Tschope\IPTVCustomers;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
-use FelipeMateus\IPTVCustomers\Middleware\CustomerMiddleware;
-use FelipeMateus\IPTVCore\Helpers\IPTVProviderBase;
-use FelipeMateus\IPTVCustomers\Dashs\Customers;
-use FelipeMateus\IPTVCustomers\Dashs\Plans;
-use FelipeMateus\IPTVCustomers\Commands\GenerateInvoces;
+use Tschope\IPTVCustomers\Middleware\CustomerMiddleware;
+use Tschope\IPTVCore\Helpers\IPTVProviderBase;
+use Tschope\IPTVCustomers\Dashs\Customers;
+use Tschope\IPTVCustomers\Dashs\Plans;
+use Tschope\IPTVCustomers\Commands\GenerateInvoces;
 
 class IPTVProvider extends IPTVProviderBase
 {

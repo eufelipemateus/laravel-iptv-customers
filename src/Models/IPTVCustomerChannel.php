@@ -1,8 +1,8 @@
 <?php
 
-namespace FelipeMateus\IPTVCustomers\Models;
+namespace Tschope\IPTVCustomers\Models;
 
-use FelipeMateus\IPTVChannels\Model\IPTVChannel;
+use Tschope\IPTVChannels\Model\IPTVChannel;
 use Illuminate\Support\Facades\DB;
 
 class IPTVCustomerChannel extends IPTVChannel

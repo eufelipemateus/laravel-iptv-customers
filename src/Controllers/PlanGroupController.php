@@ -1,11 +1,11 @@
 <?php
 
-namespace  FelipeMateus\IPTVCustomers\Controllers;
+namespace  Tschope\IPTVCustomers\Controllers;
 
 use Illuminate\Http\Request;
-use FelipeMateus\IPTVCustomers\Models\IPTVPlan;
-use FelipeMateus\IPTVCustomers\Models\IPTVPlanGroup;
-use FelipeMateus\IPTVCore\Controllers\CoreController;
+use Tschope\IPTVCustomers\Models\IPTVPlan;
+use Tschope\IPTVCustomers\Models\IPTVPlanGroup;
+use Tschope\IPTVCore\Controllers\CoreController;
 
 class PlanGroupController extends CoreController
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace FelipeMateus\IPTVCustomers\Dashs;
+namespace Tschope\IPTVCustomers\Dashs;
 
-use FelipeMateus\IPTVCore\Helpers\IPTVDashBase;
-use FelipeMateus\IPTVCustomers\Models\IPTVPlan;
+use Tschope\IPTVCore\Helpers\IPTVDashBase;
+use Tschope\IPTVCustomers\Models\IPTVPlan;
 
 class Plans extends IPTVDashBase {
     public static  $title = "Plans Total";
