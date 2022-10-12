@@ -38,7 +38,7 @@
         "felipemateus/iptv-core":"^1.2",
         "felipemateus/iptv-channels": "^3.0.5",
         "felipemateus/http-build-url": "^0.0.1",
-        "felipemateus/laravel-iptv-gateway-payment":"^0.0.1"
+        "felipemateus/laravel-iptv-gateway-payment":"^0.0.2"
 	},
 	"autoload": {
         "psr-4": {
