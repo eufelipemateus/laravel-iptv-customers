@@ -1,6 +1,6 @@
 <?php
 
-namespace Tschope\IPTVCustomers\Models;
+namespace FelipeMateus\IPTVCustomers\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -63,7 +63,7 @@ class IPTVCustomerInvoce extends Model
      *
     */
     public function customer(){
-        return $this->belongsTo('Tschope\IPTVCustomers\Models\IPTVCustomer', 'iptv_customer_id');
+        return $this->belongsTo('FelipeMateus\IPTVCustomers\Models\IPTVCustomer', 'iptv_customer_id');
     }
 
 }

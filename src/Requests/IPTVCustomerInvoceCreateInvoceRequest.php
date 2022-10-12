@@ -1,6 +1,6 @@
 <?php
 
-namespace Tschope\IPTVCustomers\Requests;
+namespace FelipeMateus\IPTVCustomers\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 

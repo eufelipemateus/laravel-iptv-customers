@@ -1,10 +1,10 @@
 <?php
 
-namespace Tschope\IPTVCustomers\Models;
+namespace FelipeMateus\IPTVCustomers\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Tschope\IPTVGatewayPayment\Models\IPTVTaxVat;
+use FelipeMateus\IPTVGatewayPayment\Models\IPTVTaxVat;
 
 class IPTVPlan extends Model
 {

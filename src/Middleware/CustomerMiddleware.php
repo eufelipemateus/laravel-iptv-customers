@@ -1,11 +1,11 @@
 <?php
 
-namespace  Tschope\IPTVCustomers\Middleware;
+namespace  FelipeMateus\IPTVCustomers\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Tschope\IPTVCustomers\Models\IPTVCustomer;
-use Tschope\IPTVChannels\Model\IPTVConfig;
+use FelipeMateus\IPTVCustomers\Models\IPTVCustomer;
+use FelipeMateus\IPTVChannels\Model\IPTVConfig;
 
 class CustomerMiddleware
 {

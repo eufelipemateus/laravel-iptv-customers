@@ -1,9 +1,9 @@
 <?php
 
-namespace Tschope\IPTVCustomers\Dashs;
+namespace FelipeMateus\IPTVCustomers\Dashs;
 
-use Tschope\IPTVCore\Helpers\IPTVDashBase;
-use Tschope\IPTVCustomers\Models\IPTVCustomer;
+use FelipeMateus\IPTVCore\Helpers\IPTVDashBase;
+use FelipeMateus\IPTVCustomers\Models\IPTVCustomer;
 
 class Customers extends IPTVDashBase {
     public static  $title = "Customers Total";

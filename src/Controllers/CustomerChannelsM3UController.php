@@ -1,12 +1,12 @@
 <?php
 
-namespace  Tschope\IPTVCustomers\Controllers;
+namespace  FelipeMateus\IPTVCustomers\Controllers;
 
 use Illuminate\Http\Request;
 
-use Tschope\IPTVCustomers\Models\IPTVCustomerChannel;
-use Tschope\IPTVCore\Model\IPTVConfig;
-use Tschope\IPTVCore\Controllers\CoreController;
+use FelipeMateus\IPTVCustomers\Models\IPTVCustomerChannel;
+use FelipeMateus\IPTVCore\Model\IPTVConfig;
+use FelipeMateus\IPTVCore\Controllers\CoreController;
 
 class CustomerChannelsM3UController  extends CoreController{
 
