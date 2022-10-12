@@ -33,12 +33,12 @@
         "clients-channels"
     ],
     "require": {
-        "php": "^7.4|^8.0",
-        "laravel/framework": "8.82.0",
-        "felipemateus/iptv-core":"^1.1",
-        "felipemateus/iptv-channels": "^3.0.4",
+        "php": "^8.0|^8.0",
+        "laravel/framework": "^9.11",
+        "felipemateus/iptv-core":"^2.0",
+        "felipemateus/iptv-channels": "^4.0",
         "felipemateus/http-build-url": "^0.0.1",
-        "felipemateus/laravel-iptv-gateway-payment":"^0.0.1"
+        "felipemateus/laravel-iptv-gateway-payment":"^1.0"
 	},
 	"autoload": {
         "psr-4": {
