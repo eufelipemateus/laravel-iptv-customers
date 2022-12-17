@@ -100,14 +100,19 @@
 
                         <div class="form-group">
 							<label for="hash_acess" class="col-md-4 control-label">{{ __('Hash') }}</label>
-							<div class="col-md-6">
-								<input id="hash_acess" type="text" class="form-control" readonly value="@if(isset($Customer->hash_acess)){{ $Customer->hash_acess }}@endif" placeholder="" required autofocus>
-                                @if ($errors->has('hash_acess'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('hash_acess') }}</strong>
-                                    </span>
-                                @endif
-							</div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <input id="hash_acess" type="text" class="form-control" readonly value="@if(isset($Customer->hash_acess)){{ $Customer->hash_acess }}@endif" placeholder="" required autofocus>
+                                    @if ($errors->has('hash_acess'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('hash_acess') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                                <div class="col-md-3">
+                                    <button  name="regenerate" value="ok"  class="btn btn-success">{{ __('Regenerate')}}</button>
+                                </div>
+                            </div>
 						</div>
 
                         <div class="form-group">

@@ -69,7 +69,7 @@ class CustomerController extends CoreController
 		]);
 		$data = $request->all();
         $data['hash_acess'] = md5(now());
-	    $customer  = 	IPTVCustomer::create($data);
+        $customer  = 	IPTVCustomer::create($data);
         return redirect()->route('show_customer',['id'=>$customer->id]);
 	}
 
@@ -81,6 +81,14 @@ class CustomerController extends CoreController
      */
 	public function update($id,Request $request){
 		$customer =IPTVCustomer::findOrFail($id);
+
+        $regenerate = $request->input("regenerate");
+
+        if(!empty($regenerate)){
+            $data['hash_acess'] = md5(now());
+            $customer->update($data);
+            return redirect()->route('show_customer',['id'=>$customer->id]);
+        }
 
 		$this->validate($request, [
 			'name' => 'string|required',
