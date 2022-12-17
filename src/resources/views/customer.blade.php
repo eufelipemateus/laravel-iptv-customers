@@ -13,6 +13,44 @@
 .form-list-group{
     display: inline-block;
 }
+
+.tooltipCopy {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltipCopy .tooltiptext {
+    visibility: hidden;
+    width: 140px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 150%;
+    left: 50%;
+    margin-left: -75px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltipCopy .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
+
+.tooltipCopy:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
 </style>
 @endsection
 
@@ -201,8 +239,18 @@
 
                     <div class="form-group">
                         <label for="name" class="col-md-4 control-label">{{ __('Url') }}</label>
-                        <div class="col-md-6">
-                            <input type="text" class="form-control" readonly value="   @if(isset($Customer->personal_url)){{ $Customer->personal_url }} @endif" id="myInput">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" readonly value="@if(isset($Customer->personal_url)){{ $Customer->personal_url }} @endif" id="myInput">
+                            </div>
+                            <div class="col-md-3">
+                                <div class="tooltipCopy">
+                                    <button  class="btn btn-info" onclick="myFunction()" onmouseout="outFunc()">
+                                        <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+                                        Copy text
+                                    </button>
+                                </div>
+                            </div>
                         </div>
 					</div>
 
@@ -322,6 +370,22 @@
         </div>
     </div>
     @endif
+</div>
 
- </div>
+<script>
+    function myFunction() {
+        var copyText = document.getElementById("myInput");
+        copyText.select();
+        copyText.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(copyText.value);
+
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Copied: " + copyText.value;
+    }
+
+    function outFunc() {
+        var tooltip = document.getElementById("myTooltip");
+        tooltip.innerHTML = "Copy to clipboard";
+    }
+</script>
 @endsection
