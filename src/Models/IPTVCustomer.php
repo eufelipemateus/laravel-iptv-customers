@@ -34,7 +34,7 @@ class IPTVCustomer extends Model
 
     public function getPersonalUrlAttribute(){
 
-       $cdn =  IPTVCdn::findOrFail($this->iptv_cdn_id);
+        $cdn =  IPTVCdn::findOrFail($this->iptv_cdn_id);
 
 
         return http_build_url(route("client-playlist",['slug'=>$cdn->slug]),
@@ -68,7 +68,7 @@ class IPTVCustomer extends Model
      * @return list
      */
 	public function scopeGetList($query){
-    	return $query->orderBy("name")->get();
+        return $query->orderBy("name")->get();
     }
 
     /**
@@ -94,11 +94,11 @@ class IPTVCustomer extends Model
     /*
      * Customer Invoces List
      */
-     public function customer_invoce(){
+    public function customer_invoce(){
         return $this->hasMany(IPTVCustomerInvoce::class,  'iptv_customer_id');
     }
 
-     /**
+    /**
      * Get  defeated
      *
      * @param  string  $value
