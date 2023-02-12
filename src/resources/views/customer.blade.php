@@ -325,7 +325,6 @@
                 <div class="card-header">
                     <div class="row">
 						<div class="col-md-10"><b>{{ __('Invoces')}}</b></div>
-                        <div class="col-md-2"><a href="{{  route('new_customer',$Customer->id) }}">{{ __('Add Invoce')}}</a></div>
                     </div>
                 </div>
                 <div class="card-body">

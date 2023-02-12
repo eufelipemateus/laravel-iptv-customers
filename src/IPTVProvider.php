@@ -9,6 +9,7 @@ use FelipeMateus\IPTVCore\Helpers\IPTVProviderBase;
 use FelipeMateus\IPTVCustomers\Dashs\Customers;
 use FelipeMateus\IPTVCustomers\Dashs\Plans;
 use FelipeMateus\IPTVCustomers\Commands\GenerateInvoces;
+use Illuminate\Console\Scheduling\Schedule;
 
 class IPTVProvider extends IPTVProviderBase
 {
@@ -29,6 +30,7 @@ class IPTVProvider extends IPTVProviderBase
         $this->loadMenusFrom(__DIR__.'/resources/menu');
         $this->registerDashboard();
         $this->registerCommands();
+        $this->registerSchedule();
     }
 
     /**
@@ -72,6 +74,18 @@ class IPTVProvider extends IPTVProviderBase
                 GenerateInvoces::class,
             ]);
         }
+    }
+
+    /**
+     * Register Schedule
+     *
+     * @return void
+     */
+    private function  registerSchedule (){
+        $this->app->booted(function () {
+            $schedule = app(Schedule::class);
+            $schedule->command('invoce:month')->monthlyOn(1, '02:00');
+        });
     }
 
 }
