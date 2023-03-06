@@ -4,7 +4,7 @@ namespace FelipeMateus\IPTVCustomers\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use FelipeMateus\IPTVChannels\Model\IPTVCdn;
+use FelipeMateus\IPTVCustomers\Models\IPTVCdn;
 
 class IPTVCustomer extends Model
 {
